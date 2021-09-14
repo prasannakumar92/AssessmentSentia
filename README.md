@@ -20,7 +20,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
       * Ensure you have all Prerequisites installed on agent machine. 
       * Specific to this solution, Powershell Version 5.* and above, Bicep and Azure CLI
 5) Create a Service Principle and establish connection between Azure and DevOps.
-6) Before starting Create Storage account and Keyvault manully. This is have common script and Credentials used in the yaml pipeline. 
+6) Before starting Create Storage account and Keyvault manully. This is to have common script and Credentials used in the Bicep Templates.
 
 ## Architecture.
 <a >
