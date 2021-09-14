@@ -1,4 +1,4 @@
-# AssessmentSentia
+# Assessment Sentia
 This following assessment has been hosted on Microsoft Azure Cloud. Current repository contains Infrastructure as Code(IaC) which host complete infra as per mentioned requirments.
 Implementation is completey done on Azure Devops Including repository and also for CI anb CD. 
 
@@ -24,6 +24,12 @@ Implementation is completey done on Azure Devops Including repository and also f
     <img src="Architecture/Architecture.jpg" alt="Bicep_Moduel_reference" title="Sentia" align="Center" height="500" />
 </a>
 
+## Implemented Azure Services.
+  * App Plan & App Service
+  * Consumption Plan & Function App
+  * CosmosDB
+  * Azure Virtual Machine(linux)
+     
 ## Implementation.
 
 Azure Bicep is the new way of IaC to Provision infrastructure in Azure. There are Different way of implementation. 
