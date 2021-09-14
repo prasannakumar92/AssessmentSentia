@@ -9,6 +9,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
 - [Implemented Azure Services](#Implemented_Azure_Services)
 - [Implementation](#Implementation)
 - [Assumption](#Assumption)
+- [DevOps PipeLine](#DevOps_PipeLine)
 
 ## Prerequisites
 1) Install Biceps and Azure CLI
