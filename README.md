@@ -5,8 +5,8 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
 ## Table of content
 - [Prerequisites](#Prerequisites)
 - [Implementation](#Implementation)
-- [Over_view_of_infra_Architecture](#Over view of infra Architecture)
-- [Implemented_Azure_Services](#Implemented Azure Services)
+- [Over_view_of_infra_Architecture](#Over_view_of_infra_Architecture)
+- [Implemented_Azure_Services](#Implemented_Azure_Services)
 - [Implementation](#Implementation)
 - [Assumption](#Assumption)
 
