@@ -1,10 +1,14 @@
 # Assessment Sentia
 This following assessment has been hosted on Microsoft Azure Cloud. Current repository contains Infrastructure as Code(IaC) which host complete infra as per mentioned requirments.
-Implementation is completey done on Azure Devops Including repository and also for CI anb CD. 
+Implementation is completey done on Azure Devops for repository, CI and CD, Private agent pool etc.. 
 
 ## Table of content
 - [Prerequisites](#Prerequisites)
 - [Implementation](#Implementation)
+- [Over view of infra Architecture](#Over view of infra Architecture)
+- [Implemented Azure Services](#Implemented Azure Services)
+- [Implementation](#Implementation)
+- 
 
 ## Prerequisites
 1) Install Biceps and Azure CLI
@@ -12,12 +16,9 @@ Implementation is completey done on Azure Devops Including repository and also f
 2) Azure Subscription
 3) Azure Devops Organization,  DevOps Project
 4) Private Build Agent(not mandatory, but good to have)
-      * For complete setup I used private agent Pool for all CI and CD.
-      * Create Windows VM and configure Agent to run as service to have your private agent. 
       * Ensure you have all Prerequisites installed on agent machine. 
       * Specific to this solution, Powershell Version 5.* and above, Bicep and Azure CLI
-5) Create a Service Principle to establish connection between Azure and DevOps.
-
+5) Create a Service Principle and establish connection between Azure and DevOps.
 
 ## Over view of infra Architecture.
 <a >
@@ -50,15 +51,11 @@ Now, **main.bicep** templated act as singel source of template, nesting all othe
  * **jobs** which executes few times in a day can be moved to **Azure Functions** where bash and python scritps can be supported.
  * **Log and Dashboards** can be viewed from Kibana, **Azure Linux VM** host Elastic Search, kibana etc, which can help in visualize Data. 
  * Kibana Azure VM will be created on desired network and subnet, where it cannot be accessed publically
-     # Assumption
-     ELS and Kiaban can be replaces with Azure Application insights. In order to create provide private access, Azure provides multiple ways of restricting access. 
+ 
+ # Assumption
+   ELS and Kiaban can be replaces with Azure Application insights. In order to create provide private access, Azure provides multiple ways of restricting access. 
      1) RBAC - on who can access
      2) Private Endpoint - to access only for specified network(as privateLinkScope is in preview, this feature can be tested before implementing)
      
   in this solution, I have created application insights that has been scoped to privateLink, where private endpoint is created
-     
-     
-
-
-
 
