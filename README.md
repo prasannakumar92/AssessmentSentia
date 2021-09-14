@@ -41,10 +41,6 @@ In this solution i have declared  resources form **main.bicep**, where as all th
 
 Now, **main.bicep** templated act as singel source of template, nesting all other templates. bicep utilizes **modules** to refer to other bicep templates as in below image.
 
-<a>
-    <img src="images/Bicep_Moduel_reference.png" alt="Bicep_Moduel_reference" title="Bicep_Moduel_reference" align="Center" height="300" />
-</a>
-
  * Front End is being hosted on **Azure App service of Linux** to run application on **Node.js application behind NGINX**
  * **MongoDB** can be replaced with **CosmosDB** cluster for storing data
  * **FTP Services** can be hosted on a **Azure Linux VM**,for better scalability and **Azure File Share** will be mounted such to isolate documents and secure.
