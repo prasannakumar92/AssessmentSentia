@@ -27,7 +27,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
     <img src="Architecture/Architecture.jpg" alt="Architecture" title="Architecture" align="Center" height="500" />
 </a>
 
-**Note: as per design Azure AD App Registration credentials are is required to mount storage account inside azure VM. For the reason as pre checklist. App ClientID, ClientKey, TenantID, VMAdminPassword need to manually added on the KV. **
+**Note:** as per design Azure AD App Registration credentials are is required to mount storage account inside azure VM. For the reason as pre checklist. App ClientID, ClientKey, TenantID, VMAdminPassword need to manually added on the KV.
 
 ## Implemented Azure Services.
   * App Plan & App Service - for Front End(FE)
@@ -71,7 +71,7 @@ Each stage has it's own configuration and fucntionalities. Few condition inside 
  This process has been completely automated using Azure DevOps. Code developed locally has been moved to DevOps Git Repo. 
  CI and CD pipeline has been developed in **YAML** format. There are no much dependencies on the variables except private agents.
  
- **Note: private agent pool won't be shown in the YAML, so line "pool: GlobeTrotterLife-AGPool" has to be modified before your use.**
+ **Note:** private agent pool won't be shown in the YAML, so line "pool: GlobeTrotterLife-AGPool" has to be modified before your use.
 
  As per the requirment multiple environments are requsetd, In the Yaml file there are multiple stage created Name **Dev, Acceptance and Production**. Each environment uses it's   own specific parameter file which is in format **<environment>.parameter.json**.
 
@@ -91,6 +91,6 @@ it has been designed in way that all Stages are depended to each other.
 3) **Acceptance** : Similar steps has been carried out. Additionally environment permission has been added, such as Approval(this has been done on my end so won't be shown on you end.
 4) **Production** : Similar steps has been carried out. Additionally environment permission has been added, such as Approval(this has been done on my end so won't be shown on you end.     
      
-  **Note:** templates are designed in way that Web App slot and auto scalling will only be done in Acceptance and Production.
+**Note:** templates are designed in way that Web App slot and auto scalling will only be done in Acceptance and Production.
      
      
