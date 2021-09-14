@@ -69,6 +69,8 @@ Each stage has it's own configuration and fucntionalities. Few condition inside 
  # DevOps PipeLine
  This process has been completely automated using Azure DevOps. Code developed locally has been moved to DevOps Git Repo. 
  CI and CD pipeline has been developed in **YAML** format. There are no much dependencies on the variables except private agents.
+ 
+ **Note: private agent pool won't be shown in the YAML, so line "pool: GlobeTrotterLife-AGPool" has to be modified before your use.**
 
  As per the requirment multiple environments are requsetd, In the Yaml file there are multiple stage created Name **Dev, Acceptance and Production**. Each environment uses it's   own specific parameter file which is in format **<environment>.parameter.json**.
 
