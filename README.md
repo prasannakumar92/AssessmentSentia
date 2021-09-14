@@ -53,9 +53,9 @@ Now, **main.bicep** templated act as singel source of template, nesting all othe
  * Kibana Azure VM will be created on desired network and subnet, where it cannot be accessed publically
  
  # Assumption
-   ELS and Kiaban can be replaces with Azure Application insights. In order to create provide private access, Azure provides multiple ways of restricting access. 
-     1) RBAC - on who can access
-     2) Private Endpoint - to access only for specified network(as privateLinkScope is in preview, this feature can be tested before implementing)
+ ELS and Kiaban can be replaces with Azure Application insights. In order to create provide private access, Azure provides multiple ways of restricting access. 
+ 1) RBAC - on who can access
+ 2) Private Endpoint - to access only for specified network(as privateLinkScope is in preview, this feature can be tested before implementing)
      
-  in this solution, I have created application insights that has been scoped to privateLink, where private endpoint is created
+ In this solution, I have created application insights that has been scoped to privateLink, where private endpoint is created
 
