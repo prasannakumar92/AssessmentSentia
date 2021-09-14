@@ -5,7 +5,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
 ## Table of content
 - [Prerequisites](#Prerequisites)
 - [Implementation](#Implementation)
-- [Over_view_of_infra_Architecture](#Over_view_of_infra_Architecture)
+- [Infra Architecture](#infra_Architecture)
 - [Implemented_Azure_Services](#Implemented_Azure_Services)
 - [Implementation](#Implementation)
 - [Assumption](#Assumption)
@@ -20,7 +20,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
       * Specific to this solution, Powershell Version 5.* and above, Bicep and Azure CLI
 5) Create a Service Principle and establish connection between Azure and DevOps.
 
-## Over view of infra Architecture.
+## Infra Architecture.
 <a >
     <img src="Architecture/Architecture.jpg" alt="Architecture" title="Architecture" align="Center" height="500" />
 </a>
