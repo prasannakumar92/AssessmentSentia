@@ -27,7 +27,7 @@ Implementation is completey done on Azure Devops for repository, CI and CD, Priv
     <img src="Architecture/Architecture.jpg" alt="Architecture" title="Architecture" align="Center" height="500" />
 </a>
 
-** Public IP has been added to ensure I have access, This can be removed upon once Network is setup **
+Public IP has been added to ensure I have access, This can be removed upon once Network is setup.
 
 **Note:** as per design Azure AD App Registration credentials are is required to mount storage account inside azure VM. For the reason as pre checklist. App ClientID, ClientKey, TenantID, VMAdminPassword need to manually added on the KV.
 
