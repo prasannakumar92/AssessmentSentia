@@ -41,7 +41,7 @@ In this solution i have declared  resources form **main.bicep**, where as all th
 
 Now, **main.bicep** templated act as singel source of template, nesting all other templates. bicep utilizes **modules** to refer to other bicep templates as in below image.
 <a >
-    <img src="images/Bicep_Moduel_reference.png" alt="Bicep_Moduel_reference" title="Bicep_Moduel_reference" align="Center" height="400" />
+    <img src="Images/Bicep_Moduel_reference.png" alt="Bicep_Moduel_reference" title="Bicep_Moduel_reference" align="Center" height="400" />
 </a>
 
  * Front End is being hosted on **Azure App service of Linux** to run application on **Node.js application behind NGINX**
