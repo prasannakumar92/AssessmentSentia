@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ApplicationName":{
+            "value": "sentia"
+        },
+        "aspSkuName":{
+            "value": "P1V2"
+        },
+        "aspSkutier":{
+            "value": "Premium "
+        },
+        "environment":{
+            "value": "PROD"
+        },
+        "storagetierName":{
+            "value": "Standard_LRS"
+        },
+        "storagetier":{
+            "value": "Standard"
+        },
+        "VnetAddressSpace":{
+            "value": "183.15.0.0/16"
+        },
+        "VnetSubNetAddress":{
+            "value": [
+                {
+                    "name":"App_Subnet",
+                    "AddressPrefix":"183.15.0.0/28"
+                },
+                {
+                    "name":"subnet_VM",
+                    "AddressPrefix":"183.15.1.0/27"
+                },
+                {
+                    "name":"subnet_PEP",
+                    "AddressPrefix":"183.15.2.0/27"
+                }
+            ]
+        },
+        "buildvmsubnetId":{
+            "value": "/subscriptions/72166528-e07c-4d7a-9e72-f7250138ff75/resourceGroups/buildvm/providers/Microsoft.Network/virtualNetworks/buildvm-vnet/subnets/default"
+        }
+    }
+}

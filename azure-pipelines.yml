@@ -1,0 +1,151 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+name: Sentia-Infra
+
+variables:
+  TemplateFilePath: '$(System.ArtifactsDirectory)\SentiaInfra\SentiaInfraArtifact\main.bicep'
+  TemplateParameterFilePath: '$(System.ArtifactsDirectory)\SentiaInfra\SentiaInfraArtifact\$(Environment).parameter.json'
+  Application: 'sentia'  
+  Location: 'westeurope'
+
+stages:
+- stage: BuildCode
+  pool: GlobeTrotterLife-AGPool
+  displayName : "CreateInfraArtifact"
+  jobs:
+    - job:
+      displayName : "CreateInfraArtifact"
+      steps:
+        - task: CopyFiles@2
+          displayName: Copy File
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)'
+            Contents: '**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+            CleanTargetFolder: true
+        - task: PublishBuildArtifacts@1
+          displayName: Publish Build Artifacts
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'SentiaInfraArtifact'
+            publishLocation: Container
+
+- stage : DEV
+  displayName: DEV
+  dependsOn: BuildCode
+  jobs:
+    - deployment: Create_Infra_Environment
+      environment: DEV
+      pool: 
+        name : GlobeTrotterLife-AGPool
+    - job: Create_Infra
+      pool: GlobeTrotterLife-AGPool
+      variables:
+          Environment: 'DEV'          
+      steps:
+        - task: DownloadBuildArtifacts@1
+          displayName: 'Download_Artifacts'
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'SentiaInfraArtifact'
+            downloadPath: '$(System.ArtifactsDirectory)\SentiaInfra'
+
+        - task: AzurePowerShell@5
+          displayName: UploadVMExtensionContent
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            ScriptType: 'FilePath'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/Upload_Extension_scritp.ps1'
+            ScriptArguments: '-Location ''westeurope'' -UploadFilePath ''$(System.ArtifactsDirectory)/SentiaInfra/SentiaInfraArtifact/Scripts/'' -ApplicationName ''sentia'''
+            azurePowerShellVersion: 'LatestVersion'
+
+        - task: AzureCLI@2
+          displayName: 'Create_Infrastructure'
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            scriptType: ps
+            scriptPath: '$(System.DefaultWorkingDirectory)/DeployScript.ps1'
+            arguments: '-Environment $(Environment) -Application $(Application) -Location $(Location) -TemplateFilePath $(TemplateFilePath) -TemplateParameterFilePath $(TemplateParameterFilePath)'
+
+- stage : Acceptance
+  displayName: Acceptance
+  dependsOn: DEV
+  jobs:
+    - deployment: Create_Infra_Environment
+      environment: Acceptance
+      pool: 
+        name : GlobeTrotterLife-AGPool
+    - job: Create_Infra
+      pool: GlobeTrotterLife-AGPool
+      variables:
+          Environment: 'ACC'          
+      steps:
+        - task: DownloadBuildArtifacts@1
+          displayName: 'Download_Artifacts'
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'SentiaInfraArtifact'
+            downloadPath: '$(System.ArtifactsDirectory)\SentiaInfra'
+
+        - task: AzurePowerShell@5
+          displayName: UploadVMExtensionContent
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            ScriptType: 'FilePath'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/Upload_Extension_scritp.ps1'
+            ScriptArguments: '-Location ''westeurope'' -UploadFilePath ''$(System.ArtifactsDirectory)/SentiaInfra/SentiaInfraArtifact/Scripts/'' -ApplicationName ''sentia'''
+            azurePowerShellVersion: 'LatestVersion'
+
+        - task: AzureCLI@2
+          displayName: 'Create_Infrastructure'
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            scriptType: ps
+            scriptPath: '$(System.DefaultWorkingDirectory)/DeployScript.ps1'
+            arguments: '-Environment $(Environment) -Application $(Application) -Location $(Location) -TemplateFilePath $(TemplateFilePath) -TemplateParameterFilePath $(TemplateParameterFilePath)'
+
+- stage : Production
+  displayName: Production
+  dependsOn: Acceptance
+  jobs:
+    - deployment: Create_Infra_Environment
+      environment: Acceptance
+      pool: 
+        name : GlobeTrotterLife-AGPool
+    - job: Create_Infra
+      pool: GlobeTrotterLife-AGPool
+      variables:
+          Environment: 'PROD'          
+      steps:
+        - task: DownloadBuildArtifacts@1
+          displayName: 'Download_Artifacts'
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'SentiaInfraArtifact'
+            downloadPath: '$(System.ArtifactsDirectory)\SentiaInfra'
+
+        - task: AzurePowerShell@5
+          displayName: UploadVMExtensionContent
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            ScriptType: 'FilePath'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/Upload_Extension_scritp.ps1'
+            ScriptArguments: '-Location ''westeurope'' -UploadFilePath ''$(System.ArtifactsDirectory)/SentiaInfra/SentiaInfraArtifact/Scripts/'' -ApplicationName ''sentia'''
+            azurePowerShellVersion: 'LatestVersion'
+
+        - task: AzureCLI@2
+          displayName: 'Create_Infrastructure'
+          inputs:
+            azureSubscription: 'Azure_Free_Subscription'
+            scriptType: ps
+            scriptPath: '$(System.DefaultWorkingDirectory)/DeployScript.ps1'
+            arguments: '-Environment $(Environment) -Application $(Application) -Location $(Location) -TemplateFilePath $(TemplateFilePath) -TemplateParameterFilePath $(TemplateParameterFilePath)'            
