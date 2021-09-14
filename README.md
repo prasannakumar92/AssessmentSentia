@@ -91,4 +91,6 @@ it has been designed in way that all Stages are depended to each other.
 3) **Acceptance** : Similar steps has been carried out. Additionally environment permission has been added, such as Approval(this has been done on my end so won't be shown on you end.
 4) **Production** : Similar steps has been carried out. Additionally environment permission has been added, such as Approval(this has been done on my end so won't be shown on you end.     
      
+  **Note:** templates are designed in way that Web App slot and auto scalling will only be done in Acceptance and Production.
+     
      
